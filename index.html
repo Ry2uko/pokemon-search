@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Pokemon Search App</title>
+        <link rel="stylesheet" href="styles.css" type="text/css" />
+        <script src="https://kit.fontawesome.com/b40850cb13.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/0.6.1/progressbar.min.js" integrity="sha512-7IoDEsIJGxz/gNyJY/0LRtS45wDSvPFXGPuC7Fo4YueWMNOmWKMAllEqo2Im3pgOjeEwsOoieyliRgdkZnY0ow==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </head>
+    <body>
+        <div class="parent-container">
+            <span class="loader"></span>
+            <div class="page" id="index-page">
+                <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/d65b6ec3-850d-49e2-b2d0-0938468e0637/deigjme-971b4ce3-f0f4-4d69-a4f6-f1900fcc0185.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Q2NWI2ZWMzLTg1MGQtNDllMi1iMmQwLTA5Mzg0NjhlMDYzN1wvZGVpZ2ptZS05NzFiNGNlMy1mMGY0LTRkNjktYTRmNi1mMTkwMGZjYzAxODUucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.CHgS4iwyORquF8jC2bWpZlpmqagiOhSa4dmbLRjdtcs" alt="logo" class="bg-logo" />
+                <div class="search-form">
+                    <h1 class="title">
+                        <img class="title-logo" alt="title-logo" src="https://i.pinimg.com/originals/32/eb/23/32eb230b326ee3c76e64f619a06f6ebb.png" />
+                        PokéDex
+                    </h1>
+                    <p class="sub-title">Search for Pokémon by Name or ID</p>
+                    <div class="input-group">
+                        <button type="button" id="search-button">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                        <input type="text" id="search-input" placeholder="What Pokémon are you looking for?" required>
+                    </div>
+                </div>
+                <div class="showcase-container"></div>
+            </div>
+            <div class="page" id="result-page">
+                <div class="result-page-header">
+                    <div class="header-logo-container">
+                        <button type="button" id="result-header-logo">
+                            <img class="header-logo" alt="header-logo" src="https://i.pinimg.com/originals/32/eb/23/32eb230b326ee3c76e64f619a06f6ebb.png" />
+                        </button>
+                    </div>
+                    <div class="input-group result-page-search">
+                        <button type="button" id="search-button-result">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                        <input type="text" id="search-input-result" placeholder="What Pokémon are you looking for?">
+                    </div>
+                </div>
+                <div class="pokemon-search-result">
+                    <div class="pokemon-control-buttons">
+                        <button type="button" id="prev-button" data-id="0">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            <span id="prev-pokemon-id"></span>
+                        </button>
+                        <button type="button" id="next-button" data-id="0">
+                            <span id="next-pokemon-id"></span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <div class="pokemon-result-main">
+                        <div class="pokemon-result-details">
+                            <h4>
+                                <span id="pokemon-name"></span>
+                                <span id="pokemon-id"></span>
+                            </h4>
+                            <div class="pokemon-sprite-container">
+                                <img id="sprite" alt="" src="" />
+                            </div>
+                            <div id="types"></div>
+                            <div class="additional-details">
+                                <span class="weight-details">
+                                    Weight: <span id="weight"></span>
+                                </span>
+                                <span class="height-details">
+                                    Height: <span id="height"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="pokemon-result-stats">
+                            <h2>Base Stats</h2>
+                            <div class="base-stats-container">
+                                <div class="stats-column">
+                                    <span class="stats-name">HP</span>
+                                    <div class="stats-bar">
+                                        <span id="hp"></span>
+                                        <div id="hp-bar"></div>
+                                    </div>
+                                </div>
+                                <div class="stats-column">
+                                    <span class="stats-name">Attack</span>
+                                    <div class="stats-bar">
+                                        <span id="attack"></span>
+                                        <div id="attack-bar"></div>
+                                    </div>
+                                </div>
+                                <div class="stats-column">
+                                    <span class="stats-name">Defense</span>
+                                    <div class="stats-bar">
+                                        <span id="defense"></span>
+                                        <div id="defense-bar"></div>
+                                    </div>
+                                </div>
+                                <div class="stats-column">
+                                    <span class="stats-name">SP. Atk</span>
+                                    <div class="stats-bar">
+                                        <span id="special-attack"></span>
+                                        <div id="special-attack-bar"></div>
+                                    </div>
+                                </div>
+                                <div class="stats-column">
+                                    <span class="stats-name">SP. Def</span>
+                                    <div class="stats-bar">
+                                        <span id="special-defense"></span>
+                                        <div id="special-defense-bar"></div>
+                                    </div>
+                                </div>
+                                <div class="stats-column">
+                                    <span class="stats-name">Speed</span>
+                                    <div class="stats-bar">
+                                        <span id="speed"></span>
+                                        <div id="speed-bar"></div>
+                                    </div>
+                                </div>
+                                <div class="stats-column">
+                                    <span class="stats-name">Total</span>
+                                    <div class="stats-bar">
+                                        <span id="total"></span>
+                                        <div id="total-bar"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="script.js"></script>
+    </body>
+</html>
